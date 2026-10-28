@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Shopify Retail Payments for Rich & Royal: approved in-person card rates, a straight comparison against the current provider, an interactive cost model and what changes at the till across four stores.">
+<title>Shopify Retail Payments x Rich &amp; Royal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d0d2d;
+    --navy-mid: #150b53;
+    --navy-soft: #2a2a5e;
+    --ink: #141414;
+    --grey: #5f5f66;
+    --line: #e3e3ea;
+    --bg: #f5f5f8;
+    --card: #ffffff;
+    --good: #1a7f37;
+    --bad: #b42318;
+    --tint: #eeece8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; font-size: 14.5px; }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 28px 48px; }
+
+  header { background: var(--navy); color: #fff; padding: 36px 28px 30px; border-bottom: 6px solid var(--tint); }
+  .header-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow { color: #c9c6d8; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+  header h1 { font-size: 28px; font-weight: 800; line-height: 1.18; letter-spacing: -0.01em; }
+  header p.sub { margin-top: 10px; color: #d2d0de; font-size: 14px; max-width: 700px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+  .kpi { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 10px; padding: 14px 16px; }
+  .kpi .label { font-size: 11px; color: #b9b6c9; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .kpi .value { font-size: 21px; font-weight: 800; margin-top: 4px; color: #fff; white-space: nowrap; }
+  .kpi .note { font-size: 11.5px; color: #a9a6ba; margin-top: 4px; }
+
+  h2 { font-size: 19px; font-weight: 800; margin: 40px 0 6px; color: var(--navy); }
+  h2 .rule { display: block; width: 44px; height: 4px; background: var(--navy); margin-top: 8px; border-radius: 2px; }
+  h3 { font-size: 14.5px; font-weight: 800; margin: 22px 0 8px; color: var(--navy); }
+  .section-intro { color: var(--grey); font-size: 13.5px; margin: 10px 0 18px; max-width: 740px; }
+
+  table.pricing { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  table.pricing th, table.pricing td { text-align: left; padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.pricing th { background: var(--navy); color: #fff; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: none; font-weight: 700; }
+  table.pricing tr:last-child td { border-bottom: none; }
+  td.item { font-weight: 700; width: 26%; }
+  td.price { font-weight: 800; white-space: nowrap; width: 20%; color: var(--navy); }
+  td.price small { display: block; font-weight: 500; color: var(--grey); font-size: 11.5px; white-space: normal; margin-top: 2px; }
+  td.note { color: #3c3c40; font-size: 13px; }
+  .included { color: var(--good); font-weight: 800; }
+
+  table.compare th, table.compare td { text-align: right; white-space: nowrap; font-size: 13.5px; }
+  table.compare th:first-child, table.compare td:first-child { text-align: left; white-space: normal; }
+  table.compare td.strong { font-weight: 800; color: var(--navy); }
+  table.compare td.neg { color: var(--bad); font-weight: 800; }
+  table.compare td.pos { color: var(--good); font-weight: 800; }
+  table.compare tr.total td { background: #f1f1f6; }
+
+  .callout { margin-top: 14px; background: #eeeef5; border: 1px solid var(--navy-soft); border-left: 6px solid var(--navy); border-radius: 8px; padding: 14px 16px; font-size: 13.5px; }
+  .callout strong { color: var(--navy); }
+  .callout.warn { background: #fbf3f2; border-color: var(--bad); }
+  .callout.warn strong { color: var(--bad); }
+  .fineprint { margin-top: 12px; color: var(--grey); font-size: 11.5px; }
+
+  /* model */
+  .model { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; margin-top: 18px; }
+  .inputs, .results { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .inputs h3, .results h3 { margin-top: 0; }
+  .field { margin-bottom: 12px; }
+  .field label { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+  .field label output { font-weight: 800; color: var(--navy); }
+  .field input[type=range] { width: 100%; margin-top: 6px; accent-color: var(--navy); }
+  .field select { margin-top: 6px; width: 100%; padding: 6px 8px; font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .field small { display: block; color: var(--grey); font-size: 11px; margin-top: 2px; }
+  .group-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); font-weight: 700; margin: 14px 0 8px; }
+  .results .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+  .results .row:last-child { border-bottom: none; }
+  .results .row span:last-child { font-weight: 800; white-space: nowrap; }
+  .results .row.neg span:last-child { color: var(--bad); }
+  .results .row.pos span:last-child { color: var(--good); }
+  .results .net { margin-top: 10px; background: var(--navy); color: #fff; border-radius: 8px; padding: 14px 16px; }
+  .results .net .l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #c9c6d8; font-weight: 700; }
+  .results .net .v { font-size: 26px; font-weight: 800; margin-top: 2px; }
+  .results .net .s { font-size: 12px; color: #d2d0de; margin-top: 4px; }
+  .results .formula { margin-top: 10px; font-size: 11px; color: var(--grey); }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+  .cards .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; break-inside: avoid; }
+  .card h3 { font-size: 14.5px; margin: 0 0 6px; }
+  .card h3 span.num { color: var(--navy-soft); margin-right: 6px; font-weight: 800; }
+  .card p { font-size: 13px; color: #3c3c40; }
+  .card p.pain { font-size: 12px; color: var(--bad); font-weight: 700; margin-bottom: 6px; }
+  .card p.tag { margin-top: 8px; font-size: 11.5px; color: var(--grey); }
+  .card p.tag strong { color: var(--navy); }
+
+  ul.checks { margin: 12px 0 0 18px; font-size: 13.5px; }
+  ul.checks li { margin-bottom: 8px; }
+  ul.checks li strong { color: var(--navy); }
+  ul.sources { margin: 12px 0 0 18px; font-size: 12px; color: var(--grey); }
+  ul.sources li { margin-bottom: 4px; }
+  a { color: var(--navy-mid); }
+
+  footer { margin-top: 44px; padding-top: 16px; border-top: 2px solid var(--line); font-size: 12.5px; color: var(--grey); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer strong { color: var(--ink); }
+  .print-btn { position: fixed; right: 22px; bottom: 22px; background: var(--navy); color: #fff; border: none; font-weight: 800; font-size: 13.5px; padding: 12px 20px; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.25); font-family: inherit; }
+  .print-btn:hover { background: var(--navy-mid); }
+
+  @media (max-width: 720px) { .cards, .model { grid-template-columns: 1fr; } .kpis { grid-template-columns: 1fr 1fr; } td.item, td.price { width: auto; } .tablewrap { overflow-x: auto; } }
+  @page { size: A4; margin: 14mm 12mm; }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .print-btn { display: none; }
+    header { padding: 24px 0 20px; }
+    .page { padding: 0; max-width: none; }
+    .header-inner { max-width: none; padding: 0 4px; }
+    .kpi .value { font-size: 18px; }
+    h2 { margin-top: 24px; }
+    table.pricing th, table.pricing td { padding: 8px 9px; }
+    .card p, td.note { font-size: 11.5px; }
+    input[type=range] { display: none; }
+    a { color: inherit; text-decoration: none; }
+    .page-break { break-before: page; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">Prepared for Rich &amp; Royal · October 2026 · Confidential</div>
+    <h1>Shopify Retail Payments for Rich &amp; Royal: the approved rates, and what they are worth across your four stores</h1>
+    <p class="sub">The in-person card rates our finance team has approved for Leipzig, Montabaur, Wolfsburg and Stuttgart, a straight comparison against your July to September figures, a cost model you can adjust yourself, and what changes at the till when payments and Shopify POS are one system.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="label">Domestic &amp; EEA cards</div><div class="value">1.00% + €0</div><div class="note">Per in-person transaction, no fixed fee</div></div>
+      <div class="kpi"><div class="label">International cards</div><div class="value">1.20% + €0</div><div class="note">Cards issued outside the EEA, and Amex</div></div>
+      <div class="kpi"><div class="label">Monthly fees</div><div class="value">€0</div><div class="note">No terminal rental, PCI, service or setup fees</div></div>
+      <div class="kpi"><div class="label">Contract</div><div class="value">None</div><div class="note">Switch on in the admin, no term, no exit fee</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <h2>1. Your approved rates<span class="rule"></span></h2>
+  <p class="section-intro">Shopify's standard in-person rate on your plan is 1.20%. Following the review of your July to September data, finance has approved the rates below for Rich &amp; Royal's German stores. They apply to every card taken on a Shopify card reader, with no per-transaction fixed fee.</p>
+
+  <table class="pricing">
+    <thead><tr><th>Component</th><th>Rate</th><th>What it covers</th></tr></thead>
+    <tbody>
+      <tr><td class="item">Domestic and EEA cards, in person</td><td class="price">1.00% + €0.00<small>per transaction</small></td><td class="note">Visa, Visa Debit, Mastercard, Debit Mastercard and Maestro issued in Germany or anywhere in the EEA, tapped or inserted on a Shopify reader. One blended rate covering acquiring, interchange and scheme fees. Apple Pay and Google Pay are charged at the same rate.</td></tr>
+      <tr><td class="item">International cards, in person</td><td class="price">1.20% + €0.00<small>per transaction</small></td><td class="note">Cards issued outside the EEA (for example a UK, Swiss or US tourist). Your July to September data shows these were about 10% of volume.</td></tr>
+      <tr><td class="item">American Express, in person</td><td class="price">1.20% + €0.00<small>per transaction</small></td><td class="note">You do not accept Amex today. Shopify readers accept all supported card brands by default, so Amex customers would be able to pay from day one at this rate. See the checks in section 5.</td></tr>
+      <tr><td class="item">Monthly, setup and compliance fees</td><td class="price"><span class="included">€0</span></td><td class="note">No terminal rental, no monthly service fee, no PCI fee, no minimum. The only hardware cost is the one-off purchase of the readers (section 4).</td></tr>
+      <tr><td class="item">Payouts</td><td class="price">EUR, 3 business days</td><td class="note">Retail card sales settle into the same Shopify Payments account you have used online since October 2023, to your existing bank account, with retail and online in one daily payout and reporting by location.</td></tr>
+      <tr><td class="item">Disputes and chargebacks</td><td class="price">€15 per dispute<small>refunded if you win</small></td><td class="note">In-person chip and contactless transactions carry EMV liability protection. Disputes are managed in the Shopify admin with evidence submission built in.</td></tr>
+      <tr><td class="item">Contract</td><td class="price">None</td><td class="note">Shopify Payments has no term and no exit fee. The approved rates are confirmed in writing on activation.</td></tr>
+    </tbody>
+  </table>
+  <p class="fineprint">Rates approved by Shopify Deal Desk on 26 October 2026 based on July to September 2026 processing data, for the German legal entity (Peter Stupp Design Mode GmbH). Amex rate assumes no direct Amex merchant agreement. All figures ex VAT.</p>
+
+  <h2>2. The straight comparison on your July to September figures<span class="rule"></span></h2>
+  <p class="section-intro">The numbers you shared covered three months across the four stores: €144,907 of card volume and €973 of fees with First Cash Solutions, a blended 0.67%. This is what the same volume would have cost on the approved Shopify rates.</p>
+
+  <div class="tablewrap">
+  <table class="pricing compare">
+    <thead><tr><th>July to September 2026</th><th>First Cash Solutions</th><th>Shopify Retail Payments</th><th>Difference</th></tr></thead>
+    <tbody>
+      <tr><td>Card volume processed</td><td>€144,907</td><td>€144,907</td><td class="strong">Same</td></tr>
+      <tr><td>Domestic and EEA cards (about €130,400)</td><td>Transaction-based fees</td><td>€1,304 at 1.00%</td><td></td></tr>
+      <tr><td>International cards (about €14,500)</td><td>Transaction-based fees</td><td>€174 at 1.20%</td><td></td></tr>
+      <tr class="total"><td class="strong">Processing fees, 3 months</td><td class="strong">€973</td><td class="strong">€1,478</td><td class="neg">+€506</td></tr>
+      <tr><td>Blended rate</td><td>0.67%</td><td>1.02%</td><td class="neg">+0.35 points</td></tr>
+      <tr><td>Annualised at the same run-rate (about €580k of cards)</td><td>€3,892</td><td>€5,912</td><td class="neg">+€2,020 a year</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>Being straight about it.</strong> On processing fees alone, Shopify Retail Payments costs more than First Cash Solutions: about €0.35 for every €100 of card sales, or roughly €2,000 a year at your summer run-rate and more in a strong year. This document does not pretend otherwise. The case rests on what the €973 does not include, and on what integrated payments remove from your stores' day, both of which you can put your own numbers to in section 3.
+  </div>
+
+  <h3>What the €973 may not include</h3>
+  <p class="section-intro" style="margin-top:4px;">Transaction-based pricing usually sits alongside other charges on a card acquirer's statement. Worth checking your First Cash Solutions contract for: monthly terminal rental per device, a service or support fee, a PCI compliance fee, minimum monthly charges, and the notice period or exit charge. Shopify has none of these, so every euro you find there narrows or closes the gap above.</p>
+
+  <h2>3. Put your own numbers in<span class="rule"></span></h2>
+  <p class="section-intro">Starting values are your July to September figures annualised, with the items we do not know set to conservative defaults. Move the sliders to your real position. The result updates live and prints with whatever values you set.</p>
+
+  <div class="model">
+    <div class="inputs">
+      <h3>Inputs</h3>
+      <div class="group-title">Processing</div>
+      <div class="field"><label>Annual in-store card volume <output id="o_vol">€580,000</output></label><input type="range" id="i_vol" min="400000" max="1600000" step="10000" value="580000"><small>July to September ×4 is about €580k. Your total retail sales are about €1.9M, so card volume across a full year with peak is likely higher.</small></div>
+      <div class="field"><label>Current blended rate <output id="o_cur">0.67%</output></label><input type="range" id="i_cur" min="0.40" max="1.20" step="0.01" value="0.67"><small>From your statements: €973 on €144,907.</small></div>
+      <div class="field"><label>Share of international cards <output id="o_intl">10%</output></label><input type="range" id="i_intl" min="0" max="30" step="1" value="10"><small>Charged at 1.20% instead of 1.00%. Your data shows about 10%.</small></div>
+      <div class="group-title">What you pay First Cash Solutions beyond transaction fees</div>
+      <div class="field"><label>Terminals in use <output id="o_term">4</output></label><input type="range" id="i_term" min="1" max="12" step="1" value="4"></div>
+      <div class="field"><label>Monthly fee per terminal (rental, service, PCI) <output id="o_rent">€0</output></label><input type="range" id="i_rent" min="0" max="60" step="1" value="0"><small>Set to €0 until you check the contract. Typical German terminal rental is €10 to €30 a month per device.</small></div>
+      <div class="group-title">Time at the till and in the back office</div>
+      <div class="field"><label>Minutes per store per day on double entry and end-of-day card reconciliation <output id="o_min">10</output></label><input type="range" id="i_min" min="0" max="40" step="1" value="10"><small>Keying each amount into a separate terminal, matching the terminal total to the Shopify total at close, re-entering refunds.</small></div>
+      <div class="field"><label>Trading days per year <output id="o_days">300</output></label><input type="range" id="i_days" min="250" max="365" step="5" value="300"></div>
+      <div class="field"><label>Fully loaded staff cost per hour <output id="o_hr">€18</output></label><input type="range" id="i_hr" min="12" max="35" step="1" value="18"></div>
+      <div class="group-title">One-off hardware</div>
+      <div class="field"><label>Reader per store</label><select id="i_hw"><option value="59">WisePad 3 card reader, €59</option><option value="229">POS Terminal (countertop, customer display), €229</option><option value="299">Verifone Victa Mobil (handheld, runs POS, scans, takes payment), €299</option></select><small>Prices from the Shopify Hardware Store Germany, October 2026. Any hardware discount linked to adopting Retail Payments would reduce this.</small></div>
+    </div>
+    <div class="results">
+      <h3>Per year</h3>
+      <div class="row neg"><span>Extra processing cost on Shopify</span><span id="r_proc">€0</span></div>
+      <div class="row pos"><span>Terminal and service fees you stop paying</span><span id="r_rent">€0</span></div>
+      <div class="row pos"><span>Staff time back (<span id="r_hours">0</span> hours)</span><span id="r_time">€0</span></div>
+      <div class="net"><div class="l">Net position per year</div><div class="v" id="r_net">€0</div><div class="s" id="r_nets"></div></div>
+      <div class="row" style="margin-top:12px;"><span>One-off readers for <span id="r_stores">4</span> stores</span><span id="r_hw">€0</span></div>
+      <div class="formula">Extra processing = volume × (1.00% × domestic share + 1.20% × international share) minus volume × current rate. Fees saved = terminals × monthly fee × 12. Time = minutes × trading days × 4 stores ÷ 60 × hourly cost. Illustrative; replace the defaults with your own figures.</div>
+    </div>
+  </div>
+
+  <h2 class="page-break">4. What changes at the till<span class="rule"></span></h2>
+  <p class="section-intro">Shopify POS works with your existing terminals as "external payments": the sale is rung up in POS, the amount is typed into the First Cash terminal, and the two are matched afterwards. Integrated payments remove that second step and everything that follows from it.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3><span class="num">01</span>One tap to take payment</h3>
+      <p class="pain">With external terminals: every sale is keyed twice, once in POS and once on the terminal.</p>
+      <p>With a Shopify reader the amount goes straight from the basket to the card reader. No typing, no mis-keyed €89.00 as €98.00, no "paid on terminal but not in POS" at close. On a busy Saturday in Stuttgart that is seconds saved on every single transaction, and no discrepancies to chase on Monday.</p>
+      <p class="tag"><strong>Removes</strong> the double entry and the mismatches it creates.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">02</span>Returns and exchanges back to the original card, in any store</h3>
+      <p class="pain">With external terminals: the refund is processed separately on the terminal, and only where the terminal account allows it.</p>
+      <p>A customer who bought in Leipzig and returns in Wolfsburg is refunded to their original card from the order in POS, in one step. Exchanges settle the difference automatically. The refund shows against the original order in Shopify, so finance sees one record, not two.</p>
+      <p class="tag"><strong>Included</strong> with POS Pro, which you already have.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">03</span>One daily payout and no month-end matching</h3>
+      <p class="pain">With external terminals: a First Cash statement to reconcile against POS totals, store by store, every month.</p>
+      <p>Card sales from the four stores and the online shop settle into the same Shopify Payments account you have used since 2023, in one daily EUR payout, broken down by location, tender and order in the Finance section of the admin. The reconciliation is already done when the money lands.</p>
+      <p class="tag"><strong>Same account,</strong> same bank, same reporting your finance team already knows.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">04</span>Hardware that fits the shop floor</h3>
+      <p class="pain">With external terminals: readers tied to the counter, and no link between the device and the sale.</p>
+      <p>The Verifone Victa Mobil is a handheld that runs Shopify POS, scans barcodes and takes the payment in one device, so staff can close sales on the floor during peak and avoid queues at the desk. The POS Terminal gives a countertop setup with a customer-facing display. Both are one-off purchases from the Shopify Hardware Store, shipped to Freiberg within days.</p>
+      <p class="tag"><strong>From €59 per store</strong> with the WisePad 3; €299 for the handheld.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">05</span>A rate that behaves the same on a €40 basket and a €400 basket</h3>
+      <p class="pain">With transaction-based fees: small outlet baskets carry a proportionally higher cost; large ones a lower one.</p>
+      <p>The approved rates are a flat percentage with no fixed fee per transaction. Your effective cost stays at 1.00% whether a customer buys one item or a full outfit, and it does not change in a quieter month. It is simpler to budget and simpler to explain to the director.</p>
+      <p class="tag"><strong>Predictable:</strong> €1.00 on every €100, nothing else.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">06</span>Security and compliance handled</h3>
+      <p class="pain">With a separate acquirer: a second set of PCI obligations and a second support line.</p>
+      <p>Shopify is PCI DSS Level 1 certified and the readers are EMV certified, so card data never touches your tablets or your network. Fraud screening, 3D Secure online and dispute handling in store sit in one admin, with one 24/7 support team for POS and payments together.</p>
+      <p class="tag"><strong>One provider</strong> to call when something goes wrong at the till.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">07</span>Ready for November</h3>
+      <p class="pain">The risk: a payments decision that slips the POS rollout into peak trading.</p>
+      <p>Shopify Payments is already active on your account for online sales, so retail is a setting to switch on, not a new application. The approved rates are applied on activation, readers ship from the German hardware store in days, and your tablets are already in place. There is no contract to sign and nothing to cancel if you later change your mind.</p>
+      <p class="tag"><strong>Activation</strong> can be done the same week as the POS go-live.</p>
+    </div>
+  </div>
+
+  <h2>5. Things to check before you decide<span class="rule"></span></h2>
+  <p class="section-intro">Four points worth confirming so there are no surprises after go-live. We can help with each.</p>
+  <ul class="checks">
+    <li><strong>girocard.</strong> Shopify readers process Visa, Mastercard, Maestro and Amex, including girocards that carry a Visa or Mastercard co-badge (most cards issued since 2023). A girocard with no co-badge cannot be taken on a Shopify reader. Your First Cash statements should show how much of your volume, if any, runs over the girocard network alone; we will help you read them.</li>
+    <li><strong>American Express.</strong> You do not accept Amex today. On Shopify readers all supported brands are on by default and cannot be switched off individually, so Amex would be accepted at 1.20%. For most fashion retailers that is welcome; worth knowing in advance.</li>
+    <li><strong>First Cash Solutions contract.</strong> Notice period, any exit charge, and whether terminal rental or service fees are billed separately from the €973 of transaction fees. These decide the real size of the gap in section 2.</li>
+    <li><strong>Volume for a full year.</strong> The approved rates were set on summer data. If a full year of card volume is materially above €1M, it is worth telling us, as that is the threshold our finance team uses for a fuller pricing review.</li>
+  </ul>
+
+  <h3>Sources</h3>
+  <ul class="sources">
+    <li>Shopify Deal Desk analysis for Rich &amp; Royal, DE POS, 26 October 2026 (July to September 2026 processing data supplied by Rich &amp; Royal).</li>
+    <li>Shopify Hardware Store Germany, card readers: <a href="https://hardware.shopify.com/de-de/collections/card-readers">hardware.shopify.com/de-de</a></li>
+    <li>Supported in-person card brands and readers in Germany: <a href="https://help.shopify.com/de/manual/sell-in-person/shopify-pos/payment-management/card-payments">help.shopify.com</a></li>
+    <li>Shopify Payments Germany payouts: <a href="https://help.shopify.com/de/manual/payments/shopify-payments/supported-countries/germany/payouts">help.shopify.com</a></li>
+  </ul>
+
+  <footer>
+    <div><strong>Alex Stewart</strong> · Senior Account Executive, Shopify · alex.stewart@shopify.com · +44 (0)7825 953 504</div>
+    <div>Prepared with Beatrice Porcescu, Solutions Engineer</div>
+  </footer>
+</div>
+
+<button class="print-btn" onclick="window.print()">Download as PDF</button>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const eur = n => (n < 0 ? "−€" : "€") + Math.round(Math.abs(n)).toLocaleString("en-GB");
+  const ids = ["vol","cur","intl","term","rent","min","days","hr"];
+  function calc(){
+    const vol = +$("i_vol").value, cur = +$("i_cur").value/100, intl = +$("i_intl").value/100;
+    const term = +$("i_term").value, rent = +$("i_rent").value, min = +$("i_min").value, days = +$("i_days").value, hr = +$("i_hr").value;
+    const hw = +$("i_hw").value;
+    $("o_vol").textContent = eur(vol); $("o_cur").textContent = (cur*100).toFixed(2) + "%"; $("o_intl").textContent = Math.round(intl*100) + "%";
+    $("o_term").textContent = term; $("o_rent").textContent = eur(rent); $("o_min").textContent = min; $("o_days").textContent = days; $("o_hr").textContent = eur(hr);
+    const spRate = 0.01*(1-intl) + 0.012*intl;
+    const proc = vol*spRate - vol*cur;
+    const rentSaved = term*rent*12;
+    const hours = min*days*4/60;
+    const time = hours*hr;
+    const net = rentSaved + time - proc;
+    $("r_proc").textContent = (proc>=0?"−":"+") + eur(Math.abs(proc)).replace("−","");
+    $("r_rent").textContent = "+" + eur(rentSaved);
+    $("r_hours").textContent = Math.round(hours).toLocaleString("en-GB");
+    $("r_time").textContent = "+" + eur(time);
+    $("r_net").textContent = (net>=0?"+":"−") + eur(Math.abs(net)).replace("−","");
+    $("r_nets").textContent = net>=0 ? "In favour of Shopify Retail Payments on these inputs" : "In favour of the current provider on these inputs";
+    $("r_stores").textContent = 4;
+    $("r_hw").textContent = eur(hw*4);
+  }
+  ids.forEach(k => $("i_"+k).addEventListener("input", calc));
+  $("i_hw").addEventListener("change", calc);
+  calc();
+})();
+</script>
+</body>
+</html>
